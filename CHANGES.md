@@ -1,8 +1,30 @@
 Release Notes
 ==========
 
-Version 0.20.0 (Beta 20.0)
+Version 0.21.0 (Beta 21.0)
 ==========
+* **NOTE** This release begins the process of rewriting the entire HomeKit integration, small chunks at a time, so it's possible that this can break things.  I'm trying to thoroughly test changes to make sure the end result is the same, but you have been warned.
+* Added failsafe when saving the Homebridge configuration that if there are no Indigo devices being passed that the Homebridge-indigo2 platform will not be loaded, this in case you are using a "camera server" that has nothing else on it doesn't cause issues with Homebridge-Indigo2 trying to load zero accessories
+* Changed model:submodel device resolution to detect if either model or submodel is an empty attribute and not pass the ":" separator if that is the case
+* Completely rewrote the SecuritySpy URL construction routine to better support users who don't store the xpassword state ([Issue #81](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/81))
+* Moved model/firmware resolution out of the main plugin and into the new factory package
+* Code housekeeping and cleanup
+
+Previous Release Notes
+==========
+
+Version 0.20.1 (Beta 20.1)
+---------------
+* Added additional sanity check on SecuritySpy servers that if they don't have the xaddress populated to get the address from a different field ([Issue #81](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/81))
+* Added 'ProgramHeat' and 'ProgramCool' to conditions for sending temperature set commands to a thermostat ([Issue #79](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/79))
+* Fixed bug where if a thermostat was set to auto heat/cool that changing temperatures in HomeKit would time out in the plugin because the plugin didn't know what to set, it will now increase the heat if the target temp is warmer than the current temp and increase cooling if it is cooler
+* Fixed bug where read-only HomeKit services may not get updates if not specifically programmed (i.e., for DSC alarms) ([Issue #86](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/86))
+* [Issue #81](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/81) resolved
+* [Issue #79](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/79) resolved
+* [Issue #86](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/86) resolved
+
+Version 0.20.0 (Beta 20.0)
+---------------
 * Added failsafe code in thermostats that if a heat or cool set point is below 0 degrees F that the converted value will report as 0
 * Added Nest thermostat plugin support to properly indicate when it is currently heating or currently cooling
 * Added experimental support for Pi Beacon i2cTMP102, i2cBMExx, i2cMS5803 temperature sensors ([Issue #73](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/76))
@@ -15,9 +37,6 @@ Version 0.20.0 (Beta 20.0)
 * [Issue #80](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/80) resolved
 * [Issue #73](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/76) features partially added
 * [Issue #57](https://github.com/Colorado4Wheeler/HomeKit-Bridge/issues/57) features added
-
-Previous Release Notes
-==========
 
 Version 0.19.9 (Beta 19.9)
 ---------------
