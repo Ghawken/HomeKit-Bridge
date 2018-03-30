@@ -4613,7 +4613,8 @@ class Plugin(indigo.PluginBase):
 						videoConfig['LANWAN'] = str(biLANWAN['LAN'])+str(biLANWAN['WAN'])
 						# add the stream selector ?stream=2 (0 and 1 can be used for Lan and WAN ;
 						# leave default stream at 0 - but remove it if LANWAN result in ffmpeg.js
-						videoConfig["source"] =  u"-re -i {}/h264/{}/temp.m?stream=0".format(	biURL, biName)
+						videoConfig["source"] =  u"-re -i {}/h264/{}/temp.h264?stream=".format(	biURL, biName)
+						videoConfig['audioSource'] = u'-i {}/audio/{}/2.0?stream='.format(biURL, biName)
 						videoConfig["stillImageSource"] = u"-i {}/image/{}".format(biURL, biName)
 						videoConfig["maxWidth"] = biWidth
 						# use libopenh264 as codec - needs FFMPEG compiled with this as option
