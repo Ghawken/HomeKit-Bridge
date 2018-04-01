@@ -4353,7 +4353,7 @@ class Plugin(indigo.PluginBase):
 						videoConfig['vcodec']='libopenh264'
                         # Default audio codec - unchanged - still appears best option
                         # OPUS codec longer term might be better but ffmpeg MAC OSX version has limited availability of libopus that I could find
-						videoConfig['acodec']='libfdk_aac'
+						videoConfig['acodec']='libopus'
 						videoConfig["maxHeight"] = biHeight
 						videoConfig["maxFPS"] = biFPS
 						videoConfig['maxBitrate'] = int(self.pluginPrefs.get("bitrate", "300"))
